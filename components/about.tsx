@@ -39,19 +39,22 @@ export function About() {
         </div>
 
         <Reveal delay={140}>
-          <ul className="mt-14 flex flex-wrap items-center justify-center gap-y-2 border-t border-line pt-6 md:mt-20">
-            {about.practices.map((item, index) => (
-              <li
-                key={item}
-                className="flex items-center text-[11px] font-medium uppercase tracking-[0.16em] text-muted"
-              >
-                {index > 0 ? (
-                  <span aria-hidden className="mx-3 h-1 w-1 rounded-full bg-gold sm:mx-5" />
-                ) : null}
-                {item}
-              </li>
-            ))}
-          </ul>
+          <div className="mt-14 flex flex-col items-center md:mt-20">
+            <span aria-hidden className="mb-6 h-px w-28 bg-navy/20 md:w-36" />
+            <ul className="flex flex-wrap items-center justify-center gap-y-2">
+              {about.practices.map((item, index) => (
+                <li
+                  key={item}
+                  className="flex items-center text-[11px] font-medium uppercase tracking-[0.16em] text-muted"
+                >
+                  {index > 0 ? (
+                    <span aria-hidden className="mx-3 h-1 w-1 rounded-full bg-gold sm:mx-5" />
+                  ) : null}
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
         </Reveal>
       </div>
     </section>
