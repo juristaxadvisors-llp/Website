@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/reveal";
 import { credibility } from "@/lib/content";
 
 export function Credibility() {
@@ -8,8 +9,9 @@ export function Credibility() {
     >
       <div className="page-wrap grid md:grid-cols-3">
         {credibility.map((item, index) => (
-          <div
+          <Reveal
             key={item.mark}
+            delay={index * 70}
             className={
               index === 0
                 ? "py-5 md:py-6 md:pr-10"
@@ -27,7 +29,7 @@ export function Credibility() {
             <p className="mt-2 text-[0.88rem] leading-relaxed text-muted md:text-[0.9rem]">
               {item.body}
             </p>
-          </div>
+          </Reveal>
         ))}
       </div>
     </section>

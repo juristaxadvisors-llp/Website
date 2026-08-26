@@ -17,7 +17,7 @@ export function Logo({
         width={783}
         height={616}
         className={cn(
-          "h-9 w-auto shrink-0 object-contain sm:h-11 md:h-12",
+          "h-9 w-auto shrink-0 object-contain transition-[height] duration-200 sm:h-11 md:h-12",
           compact && "h-8 sm:h-10 md:h-11",
         )}
         priority

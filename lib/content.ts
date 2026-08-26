@@ -60,7 +60,7 @@ export const about = {
 
 export const servicesIntro = {
   label: "Services",
-  heading: "The work, organised.",
+  heading: "What we help with",
   supporting:
     "Six practices, from tax and finance through to analytics and liaisoning.",
 };

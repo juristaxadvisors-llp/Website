@@ -2,6 +2,7 @@
 
 import { ArrowRight, Briefcase, ChartColumnIncreasing, User } from "lucide-react";
 import { ContactTrigger } from "@/components/contact-trigger";
+import { Reveal } from "@/components/reveal";
 import { audiences } from "@/lib/content";
 
 const icons = [Briefcase, ChartColumnIncreasing, User];
@@ -13,7 +14,7 @@ export function Audiences() {
       aria-labelledby="audience-heading"
     >
       <div className="page-wrap grid items-start gap-8 lg:grid-cols-12 lg:gap-16">
-        <div className="relative lg:col-span-5 lg:min-h-[22rem] lg:pb-24">
+        <Reveal className="relative lg:col-span-5 lg:min-h-[22rem] lg:pb-24">
           <p className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">
             <span aria-hidden className="h-1.5 w-1.5 shrink-0 bg-gold" />
             {audiences.label}
@@ -52,34 +53,36 @@ export function Audiences() {
               strokeWidth="1.15"
             />
           </svg>
-        </div>
+        </Reveal>
 
         <ul className="flex w-full min-w-0 flex-col gap-3 sm:gap-4 lg:col-span-7">
           {audiences.items.map((item, index) => {
             const Icon = icons[index];
             return (
               <li key={item.title} className="min-w-0">
-                <ContactTrigger
-                  className="group flex w-full min-w-0 items-start gap-3 rounded-xl border border-line bg-white px-3.5 py-4 text-left shadow-[0_8px_24px_rgba(11,31,51,0.04)] transition-colors duration-200 hover:border-gold/40 hover:bg-ivory sm:items-center sm:gap-4 sm:px-4 sm:py-5 md:gap-5 md:px-5 md:py-6"
-                  aria-label={`Talk to Juristax: ${item.title}`}
-                >
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#f3f0e8] sm:h-14 sm:w-14">
-                    <Icon className="h-5 w-5 text-gold sm:h-[22px] sm:w-[22px]" strokeWidth={1.5} />
-                  </span>
-                  <span className="mt-1 hidden h-11 w-px shrink-0 bg-gold/80 sm:mt-0 sm:block" />
-                  <span className="min-w-0 flex-1">
-                    <span className="block font-serif text-[1.3rem] font-medium leading-none text-navy sm:text-[1.55rem] md:text-[1.75rem]">
-                      {item.title}
+                <Reveal delay={index * 70}>
+                  <ContactTrigger
+                    className="group flex w-full min-w-0 items-start gap-3 rounded-xl border border-line bg-white px-3.5 py-4 text-left shadow-[0_8px_24px_rgba(11,31,51,0.04)] transition-[border-color,background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:border-gold/40 hover:bg-ivory hover:shadow-[0_10px_28px_rgba(11,31,51,0.06)] sm:items-center sm:gap-4 sm:px-4 sm:py-5 md:gap-5 md:px-5 md:py-6"
+                    aria-label={`Talk to Juristax: ${item.title}`}
+                  >
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#f3f0e8] sm:h-14 sm:w-14">
+                      <Icon className="h-5 w-5 text-gold sm:h-[22px] sm:w-[22px]" strokeWidth={1.5} />
                     </span>
-                    <span className="mt-2 block text-[0.84rem] leading-relaxed text-muted sm:text-[0.88rem]">
-                      {item.body}
+                    <span className="mt-1 hidden h-11 w-px shrink-0 bg-gold/80 sm:mt-0 sm:block" />
+                    <span className="min-w-0 flex-1">
+                      <span className="block font-serif text-[1.3rem] font-medium leading-none text-navy sm:text-[1.55rem] md:text-[1.75rem]">
+                        {item.title}
+                      </span>
+                      <span className="mt-2 block text-[0.84rem] leading-relaxed text-muted sm:text-[0.88rem]">
+                        {item.body}
+                      </span>
                     </span>
-                  </span>
-                  <ArrowRight
-                    className="mt-1 h-5 w-5 shrink-0 text-gold transition-transform duration-200 group-hover:translate-x-1 sm:mt-0"
-                    strokeWidth={1.5}
-                  />
-                </ContactTrigger>
+                    <ArrowRight
+                      className="mt-1 h-5 w-5 shrink-0 text-gold transition-transform duration-200 group-hover:translate-x-1 sm:mt-0"
+                      strokeWidth={1.5}
+                    />
+                  </ContactTrigger>
+                </Reveal>
               </li>
             );
           })}

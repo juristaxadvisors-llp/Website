@@ -1,49 +1,58 @@
-import { SectionLabel } from "@/components/section-label";
+import { Reveal } from "@/components/reveal";
 import { primaryServices, servicesIntro } from "@/lib/content";
 
 export function Services() {
   return (
     <section
       id="services"
-      className="overflow-hidden border-t border-line bg-ivory py-12 sm:py-16 md:py-20"
+      className="overflow-hidden border-t border-line bg-ivory py-16 sm:py-20 md:py-24"
       aria-labelledby="services-heading"
     >
       <div className="page-wrap">
-        <div className="max-w-[36rem]">
-          <SectionLabel>{servicesIntro.label}</SectionLabel>
-          <h2
-            id="services-heading"
-            className="mt-4 font-serif text-[clamp(1.9rem,6.8vw,3.35rem)] font-medium leading-[1.18] text-navy"
-          >
-            {servicesIntro.heading}
-          </h2>
-          <p className="mt-4 text-[0.98rem] leading-[1.75] text-muted sm:text-[1.05rem]">
-            {servicesIntro.supporting}
-          </p>
-        </div>
+        <Reveal>
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
+            <div>
+              <p className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">
+                <span aria-hidden className="h-1.5 w-1.5 shrink-0 bg-gold" />
+                {servicesIntro.label}
+              </p>
+              <h2
+                id="services-heading"
+                className="mt-4 font-serif text-[clamp(2.05rem,4.4vw,3.35rem)] font-medium leading-[1.15] text-navy"
+              >
+                {servicesIntro.heading}
+              </h2>
+            </div>
+            <p className="max-w-[28rem] text-[0.98rem] leading-[1.75] text-muted lg:pb-1 lg:text-right">
+              {servicesIntro.supporting}
+            </p>
+          </div>
+        </Reveal>
 
-        <div className="mt-8 border-b border-line sm:mt-10 md:mt-14">
-          {primaryServices.map((service) => (
-            <article
-              key={service.number}
-              className="group relative border-t border-line py-5 sm:py-7 md:py-8"
-            >
-              <div className="grid grid-cols-[auto_minmax(0,1fr)] items-baseline gap-x-3 gap-y-2 md:grid-cols-12 md:gap-8 md:pl-5">
-                <span
-                  aria-hidden
-                  className="absolute left-0 top-7 hidden h-[2.4rem] w-px bg-gold opacity-0 transition-opacity duration-200 group-hover:opacity-100 md:top-8 md:block"
-                />
-                <p className="text-[11px] tracking-[0.12em] text-muted md:col-span-1 md:text-[12px]">
-                  {service.number}
-                </p>
-                <h3 className="font-serif text-[1.45rem] font-medium leading-none text-navy transition-transform duration-200 group-hover:translate-x-1 sm:text-[1.85rem] md:col-span-4 md:text-[2.05rem]">
+        <div className="mt-10 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-5 lg:grid-cols-3">
+          {primaryServices.map((service, index) => (
+            <Reveal key={service.number} delay={index * 60} className="h-full">
+              <article className="group h-full rounded-xl border border-line bg-white px-3.5 py-4 transition-[border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-gold/40 sm:px-6 sm:py-7">
+                <p className="text-[11px] tracking-[0.16em] text-gold">{service.number}</p>
+                <h3 className="mt-2 font-serif text-[1.2rem] font-medium leading-snug text-navy sm:mt-3 sm:text-[1.55rem] md:text-[1.75rem]">
                   {service.title}
                 </h3>
-                <p className="col-span-2 text-[0.92rem] leading-relaxed text-muted transition-colors duration-200 group-hover:text-navy md:col-span-7 md:col-start-6">
-                  {service.items.join("  ·  ")}
-                </p>
-              </div>
-            </article>
+                <ul className="mt-3 space-y-1.5 sm:mt-4">
+                  {service.items.map((item) => (
+                    <li
+                      key={item}
+                      className="flex gap-2 text-[0.8rem] leading-relaxed text-muted sm:gap-2.5 sm:text-[0.9rem]"
+                    >
+                      <span
+                        aria-hidden
+                        className="mt-[0.55em] h-1 w-1 shrink-0 rounded-full bg-gold"
+                      />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            </Reveal>
           ))}
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { ContactTrigger } from "@/components/contact-trigger";
+import { Reveal } from "@/components/reveal";
 import { cta, site } from "@/lib/content";
 
 export function Cta() {
@@ -9,7 +10,7 @@ export function Cta() {
       aria-labelledby="cta-heading"
     >
       <div className="page-wrap text-center">
-        <div className="mx-auto max-w-[40rem]">
+        <Reveal className="mx-auto max-w-[40rem]">
           <h2
             id="cta-heading"
             className="whitespace-pre-line font-serif text-[clamp(1.9rem,7.2vw,3.5rem)] font-medium leading-[1.18] text-ivory"
@@ -27,7 +28,7 @@ export function Cta() {
               {cta.secondary}
             </a>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

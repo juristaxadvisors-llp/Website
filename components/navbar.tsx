@@ -85,7 +85,7 @@ export function Navbar() {
               key={item.href}
               href={item.href}
               className={cn(
-                "relative pb-1 text-[13px] text-navy/65 hover:text-navy",
+                "group relative pb-1 text-[13px] text-navy/65 transition-colors duration-200 hover:text-navy",
                 active === item.href && "text-navy",
               )}
             >
@@ -94,7 +94,7 @@ export function Navbar() {
                 aria-hidden
                 className={cn(
                   "absolute bottom-0 left-0 h-px bg-gold transition-[width] duration-200",
-                  active === item.href ? "w-full" : "w-0",
+                  active === item.href ? "w-full" : "w-0 group-hover:w-full",
                 )}
               />
             </a>
@@ -116,13 +116,13 @@ export function Navbar() {
             <span className="relative block h-3 w-4">
               <span
                 className={cn(
-                  "absolute left-0 h-px w-4 bg-navy transition-transform",
+                  "absolute left-0 h-px w-4 bg-navy transition-transform duration-200",
                   open ? "top-1.5 rotate-45" : "top-0.5",
                 )}
               />
               <span
                 className={cn(
-                  "absolute left-0 h-px w-4 bg-navy transition-transform",
+                  "absolute left-0 h-px w-4 bg-navy transition-transform duration-200",
                   open ? "top-1.5 -rotate-45" : "top-2.5",
                 )}
               />
@@ -132,7 +132,7 @@ export function Navbar() {
       </div>
 
       {open ? (
-        <div id={menuId} className="border-t border-line bg-cream lg:hidden">
+        <div id={menuId} className="nav-drawer border-t border-line bg-cream lg:hidden">
           <nav className="page-wrap flex flex-col py-3" aria-label="Mobile">
             {nav.map((item) => (
               <a
