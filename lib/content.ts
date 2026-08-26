@@ -6,11 +6,11 @@ export const site = {
   description:
     "Juristax Advisors LLP is a professional advisory firm built on more than 10 years of experience across taxation, finance, advisory and compliance.",
   contact: {
-    email: "",
-    phone: "",
-    location: "New Delhi, India",
-    emailHref: undefined as string | undefined,
-    phoneHref: undefined as string | undefined,
+    email: "juristaxadvisors@gmail.com",
+    phone: "+91 96439 39494",
+    location: "New Delhi",
+    emailHref: "mailto:juristaxadvisors@gmail.com",
+    phoneHref: "tel:+919643939494",
   },
 };
 
@@ -171,6 +171,18 @@ export const audiences = {
     },
   ],
 };
+
+export const enquiryServices = [
+  "Taxation",
+  "Finance",
+  "Advisory",
+  "Compliance",
+  "Data Analytics",
+  "Liaisoning",
+  "GST",
+  "Income tax",
+  "Other",
+];
 
 export const cta = {
   heading: "Have a matter you'd like to discuss?",

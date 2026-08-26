@@ -1,27 +1,26 @@
 import { Approach } from "@/components/approach";
+import { Audiences } from "@/components/audiences";
+import { ContactProvider } from "@/components/contact-provider";
 import { Cta } from "@/components/cta";
 import { Footer } from "@/components/footer";
 import { Hero } from "@/components/hero";
 import { Navbar } from "@/components/navbar";
-import { People } from "@/components/people";
-import { Proof } from "@/components/proof";
 import { Services } from "@/components/services";
-import { Story } from "@/components/story";
+import { Why } from "@/components/why";
 
 export default function HomePage() {
   return (
-    <>
+    <ContactProvider>
       <Navbar />
-      <main id="main">
+      <main id="main" className="overflow-x-hidden">
         <Hero />
-        <Story />
         <Services />
-        <People />
+        <Why />
         <Approach />
-        <Proof />
+        <Audiences />
         <Cta />
       </main>
       <Footer />
-    </>
+    </ContactProvider>
   );
 }

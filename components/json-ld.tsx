@@ -21,6 +21,13 @@ export function JsonLd() {
       "Compliance",
     ],
     slogan: "Taxation, Finance, Advisory, Compliance",
+    email: site.contact.email,
+    telephone: "+919643939494",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "New Delhi",
+      addressCountry: "IN",
+    },
   };
 
   return (
