@@ -33,7 +33,7 @@ export default function OpenGraphImage() {
               fontFamily: "Times New Roman, serif",
             }}
           >
-            Experienced advice for the decisions that matter.
+            Clear advice for decisions that matter.
           </div>
           <div
             style={{
@@ -47,7 +47,7 @@ export default function OpenGraphImage() {
           </div>
         </div>
         <div style={{ display: "flex", fontSize: 18, color: "rgba(247,245,240,0.5)" }}>
-          A new firm. Experienced people.
+          A new firm. Established experience.
         </div>
       </div>
     ),

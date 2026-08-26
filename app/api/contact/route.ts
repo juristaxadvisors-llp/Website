@@ -23,6 +23,7 @@ export async function POST(request: Request) {
   const name = readString(body.name);
   const email = readString(body.email);
   const phone = readString(body.phone);
+  const organisation = readString(body.organisation);
   const service = readString(body.service);
   const message = readString(body.message);
 
@@ -38,8 +39,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Please enter a valid phone number." }, { status: 400 });
   }
 
+  if (organisation.length > 120) {
+    return NextResponse.json({ error: "Please shorten the organisation name." }, { status: 400 });
+  }
+
   if (!enquiryServices.includes(service)) {
-    return NextResponse.json({ error: "Please select a service." }, { status: 400 });
+    return NextResponse.json({ error: "Please select what we can help you with." }, { status: 400 });
   }
 
   if (message.length < 8 || message.length > 1200) {
@@ -56,7 +61,7 @@ export async function POST(request: Request) {
 
   if (!host || !user || !pass) {
     return NextResponse.json(
-      { error: "Email is not configured yet. Add SMTP_PASS in .env.local." },
+      { error: "Email is not configured yet. Please write to us directly." },
       { status: 500 },
     );
   }
@@ -74,8 +79,8 @@ export async function POST(request: Request) {
       to,
       replyTo: email,
       subject: `New enquiry: ${service} · ${name}`,
-      text: enquiryEmailText({ name, email, phone, service, message }),
-      html: enquiryEmailHtml({ name, email, phone, service, message }),
+      text: enquiryEmailText({ name, email, phone, organisation, service, message }),
+      html: enquiryEmailHtml({ name, email, phone, organisation, service, message }),
     });
 
     return NextResponse.json({ ok: true });

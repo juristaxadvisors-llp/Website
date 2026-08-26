@@ -1,10 +1,11 @@
 export const site = {
   name: "Juristax Advisors LLP",
   shortName: "Juristax",
-  tagline: "TAXATION | FINANCE | ADVISORY | COMPLIANCE",
+  tagline: "Taxation · Finance · Advisory · Compliance",
   title: "Juristax Advisors LLP | Taxation, Finance, Advisory & Compliance",
   description:
-    "Juristax Advisors LLP is a professional advisory firm built on more than 10 years of experience across taxation, finance, advisory and compliance.",
+    "Juristax Advisors LLP is a newly established professional advisory firm built on more than 10 years of industry experience across taxation, finance, advisory and compliance.",
+  line: "Professional advice for the decisions that matter.",
   contact: {
     email: "juristaxadvisors@gmail.com",
     phone: "+91 96439 39494",
@@ -15,7 +16,6 @@ export const site = {
 };
 
 export const nav = [
-  { label: "Home", href: "#top" },
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Approach", href: "#approach" },
@@ -23,52 +23,61 @@ export const nav = [
 ];
 
 export const hero = {
-  kicker: "TAXATION  •  FINANCE  •  ADVISORY  •  COMPLIANCE",
-  headline: "Experienced advice for the decisions that matter.",
+  kicker: "TAXATION  ·  FINANCE  ·  ADVISORY  ·  COMPLIANCE",
+  headline: "Clear advice for decisions that matter.",
   supporting:
-    "Juristax Advisors LLP is a professional advisory firm built on more than 10 years of experience across taxation, finance, compliance and business advisory.",
-  primaryCta: "Talk to us",
+    "Juristax brings together taxation, finance, advisory and compliance under one professional relationship, backed by more than 10 years of industry experience.",
+  primaryCta: "Talk to Juristax",
   secondaryCta: "Explore services",
-  experienceBadge: "10+",
-  experienceLabel: "Years of industry experience",
 };
 
-export const trustBar = [
+export const credibility = [
   {
-    title: "10+ YEARS",
-    body: "Industry Experience",
+    mark: "10+",
+    label: "years",
+    body: "Industry experience",
   },
   {
-    title: "4 CORE AREAS",
-    body: "Taxation  •  Finance  •  Advisory  •  Compliance",
+    mark: "4",
+    label: "core areas",
+    body: "Taxation · Finance · Advisory · Compliance",
   },
   {
-    title: "END-TO-END",
-    body: "Professional Support",
+    mark: "One",
+    label: "relationship",
+    body: "Professional support across the work",
   },
 ];
 
-export const servicesIntro = {
-  label: "OUR SERVICES",
-  heading: "What we help with",
-  supporting:
-    "From taxation and financial planning to compliance and business advisory, our work covers the areas that matter most to a growing business.",
-  cta: "View all services",
+export const about = {
+  label: "What we do",
+  heading: "More than compliance.",
+  headingSecond: "More than numbers.",
+  body: "Businesses need more than accurate accounts and timely filings. They need clarity around tax, finance, compliance and the decisions that shape what comes next.",
+  close: "Juristax brings these areas together under one professional relationship.",
+  practices: ["Taxation", "Finance", "Advisory", "Compliance"],
 };
 
-export const serviceCards = [
+export const servicesIntro = {
+  label: "Services",
+  heading: "The work, organised.",
+  supporting:
+    "Six practices, from tax and finance through to analytics and liaisoning.",
+};
+
+export const primaryServices = [
   {
-    id: "taxation",
+    number: "01",
     title: "Taxation",
     items: [
-      "Direct & Indirect Tax",
       "GST",
       "Tax Planning",
-      "Representation",
+      "Tax Compliance",
+      "Representation & Litigation Support",
     ],
   },
   {
-    id: "finance",
+    number: "02",
     title: "Finance",
     items: [
       "Financial Planning",
@@ -77,27 +86,29 @@ export const serviceCards = [
     ],
   },
   {
-    id: "advisory",
+    number: "03",
     title: "Advisory",
     items: [
       "Business Advisory",
       "Valuation",
       "Due Diligence",
+      "Internal Controls",
       "Risk Advisory",
     ],
   },
   {
-    id: "compliance",
+    number: "04",
     title: "Compliance",
     items: [
       "GST",
       "TDS",
       "ROC",
       "Secretarial Compliance",
+      "Regulatory Compliance",
     ],
   },
   {
-    id: "analytics",
+    number: "05",
     title: "Data Analytics",
     items: [
       "MIS Reporting",
@@ -106,7 +117,7 @@ export const serviceCards = [
     ],
   },
   {
-    id: "liaison",
+    number: "06",
     title: "Liaisoning",
     items: [
       "ROC & Regulatory Approvals",
@@ -115,20 +126,17 @@ export const serviceCards = [
   },
 ];
 
-export const why = {
-  label: "WHY JURISTAX",
-  heading: "Built on experience. Focused on what matters.",
-  body: "Juristax is a new professional practice built on more than a decade of work in taxation, finance, advisory and compliance. We bring that experience together under one relationship.",
-  points: [
-    { title: "PRACTICAL ADVICE", body: "Advice that can be understood and acted upon." },
-    { title: "CONNECTED THINKING", body: "Tax, finance and compliance, looked at together." },
-    { title: "LONG-TERM SUPPORT", body: "A lasting professional relationship, not a one-off filing." },
-  ],
+export const experience = {
+  label: "The firm",
+  mark: "10+",
+  markCaption: "Years of industry experience",
+  heading: "A new chapter.\nBuilt on established experience.",
+  body: "Juristax is a newly established firm. The people behind it bring more than a decade of professional work in taxation, finance, advisory and compliance. That experience is the foundation. The firm is the next chapter.",
 };
 
 export const approach = {
-  label: "OUR APPROACH",
-  heading: "How we work",
+  label: "How we work",
+  heading: "A clear process.\nAdvice that moves things forward.",
   steps: [
     {
       number: "01",
@@ -154,40 +162,108 @@ export const approach = {
 };
 
 export const audiences = {
-  label: "WHO WE WORK WITH",
-  heading: "Who we work with",
+  label: "Who we work with",
+  heading: "Partnerships built on trust and understanding.",
+  supporting:
+    "We work with a diverse set of clients across businesses, professional practices and individuals—delivering clarity, structure and practical solutions.",
   items: [
     {
-      title: "BUSINESSES",
-      body: "Owners and management teams",
+      title: "Businesses",
+      body: "Owners and management teams seeking dependable advice for complex financial and compliance needs.",
     },
     {
-      title: "ENTREPRENEURS",
-      body: "Growing and evolving businesses",
+      title: "Entrepreneurs",
+      body: "Growing and evolving businesses looking for structure, insight and long-term financial clarity.",
     },
     {
-      title: "PROFESSIONALS",
-      body: "Individuals with complex financial needs",
+      title: "Professionals",
+      body: "Individuals with complex financial situations who value clarity, privacy and professional guidance.",
     },
   ],
 };
 
-export const enquiryServices = [
-  "Taxation",
-  "Finance",
-  "Advisory",
-  "Compliance",
-  "Data Analytics",
-  "Liaisoning",
-  "GST",
-  "Income tax",
-  "Other",
+export const enquiryServiceGroups = [
+  {
+    label: "Taxation",
+    options: [
+      "Taxation",
+      "GST",
+      "Income tax",
+      "Tax Planning",
+      "Tax Compliance",
+      "Representation & Litigation Support",
+    ],
+  },
+  {
+    label: "Finance",
+    options: [
+      "Finance",
+      "Financial Planning",
+      "Management Reporting",
+      "Treasury & Fund Management",
+    ],
+  },
+  {
+    label: "Advisory",
+    options: [
+      "Advisory",
+      "Business Advisory",
+      "Valuation",
+      "Due Diligence",
+      "Internal Controls",
+      "Risk Advisory",
+    ],
+  },
+  {
+    label: "Compliance",
+    options: [
+      "Compliance",
+      "TDS",
+      "ROC",
+      "Secretarial Compliance",
+      "Regulatory Compliance",
+    ],
+  },
+  {
+    label: "Data Analytics",
+    options: [
+      "Data Analytics",
+      "MIS Reporting",
+      "Business Analytics",
+      "Dashboards & Insights",
+    ],
+  },
+  {
+    label: "Liaisoning",
+    options: [
+      "Liaisoning",
+      "ROC & Regulatory Approvals",
+      "Government Liaisoning",
+    ],
+  },
+  {
+    label: "Other",
+    options: ["Other"],
+  },
 ];
 
+export const enquiryServices = enquiryServiceGroups.flatMap(
+  (group) => group.options,
+);
+
 export const cta = {
-  heading: "Have a matter you'd like to discuss?",
+  heading: "Have a question?\nLet's talk.",
   supporting:
-    "Tell us what you're working through. We'll take it from there.",
+    "Whether you need help with taxation, finance, compliance or a broader business matter, start with a conversation.",
   primary: "Talk to Juristax",
   secondary: "Email us",
+};
+
+export const contactModal = {
+  heading: "Let's talk.",
+  supporting:
+    "Tell us a little about what you need help with. We'll take it from there.",
+  successTitle: "Thank you.",
+  successBody:
+    "We've received your enquiry and will get back to you shortly.",
 };

@@ -1,32 +1,39 @@
-import { GoldLabel } from "@/components/section-label";
+import { SectionLabel } from "@/components/section-label";
 import { approach } from "@/lib/content";
 
 export function Approach() {
   return (
-    <section id="approach" className="overflow-hidden py-16 md:py-20" aria-labelledby="approach-heading">
+    <section
+      id="approach"
+      className="overflow-hidden border-t border-line bg-ivory py-12 sm:py-16 md:py-20"
+      aria-labelledby="approach-heading"
+    >
       <div className="page-wrap">
-        <GoldLabel>{approach.label}</GoldLabel>
-        <h2
-          id="approach-heading"
-          className="mt-4 font-serif text-[clamp(2rem,3.4vw,2.75rem)] font-medium leading-[1.2] text-navy"
-        >
-          {approach.heading}
-        </h2>
+        <div className="max-w-[34rem]">
+          <SectionLabel>{approach.label}</SectionLabel>
+          <h2
+            id="approach-heading"
+            className="mt-4 whitespace-pre-line font-serif text-[clamp(1.9rem,6.8vw,3.35rem)] font-medium leading-[1.18] text-navy"
+          >
+            {approach.heading}
+          </h2>
+        </div>
 
-        <ol className="relative mt-12 grid gap-10 md:grid-cols-4 md:gap-6">
-          <span
-            aria-hidden
-            className="absolute left-[1.15rem] top-4 hidden h-px w-[calc(100%-2.3rem)] bg-line md:block"
-          />
-          {approach.steps.map((step) => (
-            <li key={step.number} className="relative">
-              <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full border border-gold bg-cream text-[11px] font-semibold text-gold">
-                {step.number}
-              </span>
-              <h3 className="mt-5 font-serif text-[1.4rem] font-medium text-navy">
+        <ol className="mt-8 grid gap-0 sm:mt-12 md:grid-cols-4 md:gap-8">
+          {approach.steps.map((step, index) => (
+            <li
+              key={step.number}
+              className={
+                index === 0
+                  ? "border-b border-line py-6 md:border-b-0 md:py-0"
+                  : "border-b border-line py-6 last:border-b-0 md:border-b-0 md:border-l md:border-line md:py-0 md:pl-8"
+              }
+            >
+              <p className="text-[12px] tracking-[0.12em] text-muted">{step.number}</p>
+              <h3 className="mt-2 font-serif text-[1.45rem] font-medium text-navy sm:mt-3 sm:text-[1.65rem]">
                 {step.title}
               </h3>
-              <p className="mt-2 max-w-[20rem] text-[0.92rem] leading-relaxed text-muted">
+              <p className="mt-2 text-[0.95rem] leading-relaxed text-muted sm:mt-3 sm:text-[0.98rem]">
                 {step.body}
               </p>
             </li>

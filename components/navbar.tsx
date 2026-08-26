@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
-import { ArrowRight } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { ContactTrigger } from "@/components/contact-trigger";
 import { nav } from "@/lib/content";
@@ -10,7 +9,7 @@ import { cn } from "@/lib/utils";
 export function Navbar() {
   const [compact, setCompact] = useState(false);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState("#top");
+  const [active, setActive] = useState("");
   const menuId = useId();
 
   useEffect(() => {
@@ -34,17 +33,25 @@ export function Navbar() {
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
         if (visible?.target.id) setActive(`#${visible.target.id}`);
       },
-      { rootMargin: "-40% 0px -50% 0px" },
+      { rootMargin: "-42% 0px -48% 0px" },
     );
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+      return () => {
+        if (!document.getElementById("contact-modal")) {
+          document.body.style.overflow = "";
+        }
+      };
+    }
+
+    if (!document.getElementById("contact-modal")) {
       document.body.style.overflow = "";
-    };
+    }
   }, [open]);
 
   useEffect(() => {
@@ -56,70 +63,51 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-cream">
+    <header className="sticky top-0 z-50 w-full border-b border-line bg-cream">
       <div
         className={cn(
-          "page-wrap flex items-center justify-between gap-4 transition-[padding] duration-200",
+          "page-wrap flex items-center justify-between gap-2 sm:gap-4 transition-[padding] duration-200",
           compact ? "py-2.5" : "py-3.5",
         )}
       >
         <a
           href="#top"
+          className="min-w-0"
           aria-label="Juristax Advisors LLP home"
           onClick={() => setOpen(false)}
         >
           <Logo compact={compact} />
         </a>
 
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
-          {nav.map((item) =>
-            item.href === "#contact" ? (
-              <ContactTrigger
-                key={item.href}
+        <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
+          {nav.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className={cn(
+                "relative pb-1 text-[13px] text-navy/65 hover:text-navy",
+                active === item.href && "text-navy",
+              )}
+            >
+              {item.label}
+              <span
+                aria-hidden
                 className={cn(
-                  "relative pb-1 text-[13.5px] text-navy/70 hover:text-navy",
-                  active === item.href && "text-navy",
+                  "absolute bottom-0 left-0 h-px bg-gold transition-[width] duration-200",
+                  active === item.href ? "w-full" : "w-0",
                 )}
-              >
-                {item.label}
-                <span
-                  aria-hidden
-                  className={cn(
-                    "absolute bottom-0 left-0 h-px bg-gold transition-all",
-                    active === item.href ? "w-full" : "w-0",
-                  )}
-                />
-              </ContactTrigger>
-            ) : (
-              <a
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "relative pb-1 text-[13.5px] text-navy/70 hover:text-navy",
-                  active === item.href && "text-navy",
-                )}
-              >
-                {item.label}
-                <span
-                  aria-hidden
-                  className={cn(
-                    "absolute bottom-0 left-0 h-px bg-gold transition-all",
-                    active === item.href ? "w-full" : "w-0",
-                  )}
-                />
-              </a>
-            ),
-          )}
+              />
+            </a>
+          ))}
         </nav>
 
         <div className="flex items-center gap-2">
-          <ContactTrigger className="btn-pill btn-primary hidden sm:inline-flex">
+          <ContactTrigger className="btn btn-primary hidden sm:inline-flex sm:w-auto">
             Talk to us
-            <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.75} />
           </ContactTrigger>
           <button
             type="button"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-line lg:hidden"
+            className="flex h-11 w-11 shrink-0 items-center justify-center border border-line lg:hidden"
             aria-expanded={open}
             aria-controls={menuId}
             aria-label={open ? "Close menu" : "Open menu"}
@@ -145,33 +133,22 @@ export function Navbar() {
 
       {open ? (
         <div id={menuId} className="border-t border-line bg-cream lg:hidden">
-          <nav className="page-wrap flex flex-col py-4" aria-label="Mobile">
-            {nav.map((item) =>
-              item.href === "#contact" ? (
-                <ContactTrigger
-                  key={item.href}
-                  className="border-b border-line py-3 text-left text-[1rem] text-navy"
-                  onClick={() => setOpen(false)}
-                >
-                  {item.label}
-                </ContactTrigger>
-              ) : (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="border-b border-line py-3 text-[1rem] text-navy"
-                  onClick={() => setOpen(false)}
-                >
-                  {item.label}
-                </a>
-              ),
-            )}
+          <nav className="page-wrap flex flex-col py-3" aria-label="Mobile">
+            {nav.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="border-b border-line py-3 text-[1.05rem] text-navy"
+                onClick={() => setOpen(false)}
+              >
+                {item.label}
+              </a>
+            ))}
             <ContactTrigger
-              className="btn-pill btn-primary mt-5 w-fit"
+              className="btn btn-primary mt-5 sm:w-auto"
               onClick={() => setOpen(false)}
             >
               Talk to us
-              <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.75} />
             </ContactTrigger>
           </nav>
         </div>

@@ -1,20 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Newsreader, Inter } from "next/font/google";
+import { ContactProvider } from "@/components/contact-provider";
 import { JsonLd } from "@/components/json-ld";
 import { site } from "@/lib/content";
 import "./globals.css";
 
-const playfair = Playfair_Display({
+const newsreader = Newsreader({
   subsets: ["latin"],
-  variable: "--font-playfair",
-  weight: ["400", "500", "600", "700"],
+  variable: "--font-newsreader",
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
@@ -45,6 +46,10 @@ export const metadata: Metadata = {
     title: site.title,
     description: site.description,
   },
+  icons: {
+    icon: [{ url: "/logo.png", type: "image/png" }],
+    apple: [{ url: "/logo.png", type: "image/png" }],
+  },
   robots: { index: true, follow: true },
 };
 
@@ -54,16 +59,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-IN" className={`${playfair.variable} ${inter.variable}`}>
-      <body className="overflow-x-hidden font-sans antialiased">
+    <html lang="en-IN" className={`${newsreader.variable} ${inter.variable}`}>
+      <body className="font-sans antialiased">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:bg-navy focus:px-4 focus:py-2 focus:text-ivory"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[70] focus:bg-navy focus:px-4 focus:py-2 focus:text-ivory"
         >
           Skip to content
         </a>
         <JsonLd />
-        {children}
+        <ContactProvider>{children}</ContactProvider>
       </body>
     </html>
   );

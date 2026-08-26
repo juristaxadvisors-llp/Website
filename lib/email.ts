@@ -7,16 +7,33 @@ function escapeHtml(value: string) {
     .replaceAll("'", "&#39;");
 }
 
-export function enquiryEmailHtml(input: {
+type Enquiry = {
   name: string;
   email: string;
   phone: string;
+  organisation: string;
   service: string;
   message: string;
-}) {
+};
+
+function row(label: string, value: string, href?: string) {
+  const inner = href
+    ? `<a href="${href}" style="color:#0B1F33;text-decoration:none;">${value}</a>`
+    : value;
+
+  return `<tr>
+    <td style="padding:10px 0;border-bottom:1px solid rgba(11,31,51,0.08);">
+      <p style="margin:0 0 4px;font-size:11px;letter-spacing:0.12em;color:#66717D;">${label}</p>
+      <p style="margin:0;font-size:15px;color:#0B1F33;">${inner}</p>
+    </td>
+  </tr>`;
+}
+
+export function enquiryEmailHtml(input: Enquiry) {
   const name = escapeHtml(input.name);
   const email = escapeHtml(input.email);
   const phone = escapeHtml(input.phone);
+  const organisation = escapeHtml(input.organisation);
   const service = escapeHtml(input.service);
   const message = escapeHtml(input.message).replaceAll("\n", "<br />");
 
@@ -34,41 +51,19 @@ export function enquiryEmailHtml(input: {
           <table role="presentation" width="560" cellspacing="0" cellpadding="0" style="width:560px;max-width:100%;background:#ffffff;border:1px solid rgba(11,31,51,0.08);">
             <tr>
               <td style="background:#0B1F33;padding:28px 32px;">
-                <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:0.18em;color:#C7A45A;">JURISTAX ADVISORS LLP</p>
+                <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:0.16em;color:#C7A45A;">JURISTAX ADVISORS LLP</p>
                 <h1 style="margin:10px 0 0;font-size:26px;line-height:1.25;font-weight:500;color:#F7F5F0;">New enquiry received</h1>
               </td>
-            </tr>
-            <tr>
-              <td style="height:3px;background:#C7A45A;font-size:0;line-height:0;">&nbsp;</td>
             </tr>
             <tr>
               <td style="padding:28px 32px 8px;font-family:Arial,Helvetica,sans-serif;color:#16202A;">
                 <p style="margin:0 0 18px;font-size:14px;line-height:1.7;color:#66717D;">A visitor submitted the website contact form.</p>
                 <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td style="padding:10px 0;border-bottom:1px solid rgba(11,31,51,0.08);">
-                      <p style="margin:0 0 4px;font-size:11px;letter-spacing:0.12em;color:#66717D;">NAME</p>
-                      <p style="margin:0;font-size:15px;color:#0B1F33;">${name}</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding:10px 0;border-bottom:1px solid rgba(11,31,51,0.08);">
-                      <p style="margin:0 0 4px;font-size:11px;letter-spacing:0.12em;color:#66717D;">EMAIL</p>
-                      <p style="margin:0;font-size:15px;color:#0B1F33;"><a href="mailto:${email}" style="color:#0B1F33;text-decoration:none;">${email}</a></p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding:10px 0;border-bottom:1px solid rgba(11,31,51,0.08);">
-                      <p style="margin:0 0 4px;font-size:11px;letter-spacing:0.12em;color:#66717D;">PHONE</p>
-                      <p style="margin:0;font-size:15px;color:#0B1F33;">${phone}</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding:10px 0;border-bottom:1px solid rgba(11,31,51,0.08);">
-                      <p style="margin:0 0 4px;font-size:11px;letter-spacing:0.12em;color:#66717D;">SERVICE</p>
-                      <p style="margin:0;font-size:15px;color:#0B1F33;">${service}</p>
-                    </td>
-                  </tr>
+                  ${row("NAME", name)}
+                  ${row("EMAIL", email, `mailto:${email}`)}
+                  ${row("PHONE", phone)}
+                  ${organisation ? row("ORGANISATION", organisation) : ""}
+                  ${row("SERVICE", service)}
                   <tr>
                     <td style="padding:12px 0 0;">
                       <p style="margin:0 0 8px;font-size:11px;letter-spacing:0.12em;color:#66717D;">MESSAGE</p>
@@ -91,22 +86,19 @@ export function enquiryEmailHtml(input: {
 </html>`;
 }
 
-export function enquiryEmailText(input: {
-  name: string;
-  email: string;
-  phone: string;
-  service: string;
-  message: string;
-}) {
+export function enquiryEmailText(input: Enquiry) {
   return [
     "New enquiry from the Juristax website",
     "",
     `Name: ${input.name}`,
     `Email: ${input.email}`,
     `Phone: ${input.phone}`,
+    input.organisation ? `Organisation: ${input.organisation}` : "",
     `Service: ${input.service}`,
     "",
     "Message:",
     input.message,
-  ].join("\n");
+  ]
+    .filter((line) => line !== "")
+    .join("\n");
 }

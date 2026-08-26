@@ -10,16 +10,17 @@ export function ContactTrigger({
   onClick,
   ...props
 }: ButtonHTMLAttributes<HTMLButtonElement> & { children: ReactNode }) {
-  const { open, toggleForm } = useContact();
+  const { open, openForm } = useContact();
 
   return (
     <button
       type="button"
+      aria-haspopup="dialog"
       aria-expanded={open}
-      aria-controls="contact-form"
+      aria-controls="contact-modal"
       className={cn(className)}
       onClick={(event) => {
-        toggleForm();
+        openForm();
         onClick?.(event);
       }}
       {...props}

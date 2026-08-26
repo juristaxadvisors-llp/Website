@@ -10,23 +10,23 @@ export function Logo({
   compact?: boolean;
 }) {
   return (
-    <span className={cn("flex items-center gap-3", className)}>
+    <span className={cn("flex min-w-0 items-center gap-2 sm:gap-3", className)}>
       <Image
         src="/logo.png"
         alt=""
         width={783}
         height={616}
         className={cn(
-          "h-11 w-auto object-contain md:h-12",
-          compact && "h-10 md:h-11",
+          "h-9 w-auto shrink-0 object-contain sm:h-11 md:h-12",
+          compact && "h-8 sm:h-10 md:h-11",
         )}
         priority
       />
-      <span className="flex flex-col leading-none">
-        <span className="font-sans text-[13px] font-semibold tracking-[0.04em] text-navy md:text-[14px]">
+      <span className="flex min-w-0 flex-col leading-none">
+        <span className="font-sans text-[12px] font-semibold tracking-[0.04em] text-navy sm:text-[13px] md:text-[14px]">
           JURISTAX
         </span>
-        <span className="mt-1 font-sans text-[10px] tracking-[0.14em] text-muted">
+        <span className="mt-1 font-sans text-[9px] tracking-[0.12em] text-muted sm:text-[10px] sm:tracking-[0.14em]">
           ADVISORS LLP
         </span>
       </span>
