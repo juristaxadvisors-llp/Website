@@ -31,7 +31,7 @@ function ServicePicker({
   }, [open]);
 
   return (
-    <div ref={wrapRef} className="sm:col-span-2">
+    <div ref={wrapRef} className="relative z-20 sm:col-span-2">
       <span className="field-label">What can we help you with?</span>
       <button
         type="button"
@@ -51,7 +51,7 @@ function ServicePicker({
       {open ? (
         <div
           role="listbox"
-          className="mt-2 max-h-52 overflow-y-auto overscroll-contain rounded-lg border border-line bg-white"
+          className="absolute left-0 right-0 top-full z-30 mt-1 max-h-44 overflow-y-auto overscroll-contain rounded-lg border border-line bg-white shadow-[0_12px_28px_rgba(11,31,51,0.12)]"
         >
           {enquiryServiceGroups.map((group) => (
             <div key={group.label} className="border-b border-line last:border-b-0">
@@ -162,53 +162,57 @@ export function ContactModal() {
 
   return (
     <div
-      id="contact-modal"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="contact-modal-heading"
-      className="modal-overlay fixed inset-0 z-[60] flex flex-col bg-ivory text-ink"
+      className="modal-overlay fixed inset-0 z-[60] flex items-center justify-center bg-navy/45 p-4 backdrop-blur-[2px] sm:p-6"
+      onClick={closeForm}
     >
-      <div className="h-[3px] shrink-0 bg-gold" aria-hidden />
+      <div
+        id="contact-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="contact-modal-heading"
+        className="modal-panel relative flex max-h-[min(90vh,40rem)] w-full max-w-[34rem] flex-col overflow-hidden rounded-xl bg-ivory text-ink shadow-[0_24px_64px_rgba(11,31,51,0.22)]"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <div className="h-[3px] shrink-0 bg-gold" aria-hidden />
 
-      <div className="page-wrap flex w-full shrink-0 items-start justify-between gap-4 py-5">
-        <div>
-          <h2
-            id="contact-modal-heading"
-            className="font-serif text-[1.75rem] font-medium leading-tight text-navy md:text-[2.1rem]"
+        <div className="flex shrink-0 items-start justify-between gap-4 px-5 pb-4 pt-5 sm:px-7 sm:pt-6">
+          <div>
+            <h2
+              id="contact-modal-heading"
+              className="font-serif text-[1.55rem] font-medium leading-tight text-navy sm:text-[1.85rem]"
+            >
+              {contactModal.heading}
+            </h2>
+            <p className="mt-1.5 max-w-[40ch] text-[0.88rem] leading-relaxed text-muted">
+              {contactModal.supporting}
+            </p>
+          </div>
+          <button
+            ref={closeRef}
+            type="button"
+            onClick={closeForm}
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-muted hover:bg-navy/5 hover:text-navy"
+            aria-label="Close contact form"
           >
-            {contactModal.heading}
-          </h2>
-          <p className="mt-1.5 max-w-[40ch] text-[0.9rem] leading-relaxed text-muted">
-            {contactModal.supporting}
-          </p>
+            <X className="h-5 w-5" strokeWidth={1.75} />
+          </button>
         </div>
-        <button
-          ref={closeRef}
-          type="button"
-          onClick={closeForm}
-          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-muted hover:bg-navy/5 hover:text-navy"
-          aria-label="Close contact form"
-        >
-          <X className="h-5 w-5" strokeWidth={1.75} />
-        </button>
-      </div>
 
-      <div className="min-h-0 flex-1 overflow-y-auto pb-[max(1.5rem,env(safe-area-inset-bottom))]">
-        <div className="page-wrap max-w-[40rem] pb-10">
+        <div className="min-h-0 flex-1 overflow-y-auto px-5 pb-6 sm:px-7 sm:pb-7">
           {status === "sent" ? (
-            <div className="pt-6">
-              <p className="font-serif text-[1.75rem] font-medium text-navy">
+            <div className="pt-1">
+              <p className="font-serif text-[1.5rem] font-medium text-navy">
                 {contactModal.successTitle}
               </p>
-              <p className="mt-3 max-w-[36ch] text-[1rem] leading-relaxed text-muted">
+              <p className="mt-3 max-w-[36ch] text-[0.98rem] leading-relaxed text-muted">
                 {contactModal.successBody}
               </p>
-              <button type="button" onClick={closeForm} className="btn btn-primary mt-8 sm:w-auto">
+              <button type="button" onClick={closeForm} className="btn btn-primary mt-6 sm:w-auto">
                 Close
               </button>
             </div>
           ) : (
-            <form onSubmit={onSubmit} className="grid gap-4 sm:grid-cols-2">
+            <form onSubmit={onSubmit} className="grid gap-3.5 sm:grid-cols-2">
               <label className="sr-only" htmlFor="website">
                 Website
               </label>
@@ -275,7 +279,7 @@ export function ContactModal() {
                   required
                   minLength={8}
                   maxLength={1200}
-                  rows={5}
+                  rows={4}
                   className="field h-auto py-2.5 leading-relaxed"
                 />
               </label>
