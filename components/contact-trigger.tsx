@@ -8,8 +8,12 @@ export function ContactTrigger({
   children,
   className,
   onClick,
+  service,
   ...props
-}: ButtonHTMLAttributes<HTMLButtonElement> & { children: ReactNode }) {
+}: ButtonHTMLAttributes<HTMLButtonElement> & {
+  children: ReactNode;
+  service?: string;
+}) {
   const { open, openForm } = useContact();
 
   return (
@@ -20,7 +24,7 @@ export function ContactTrigger({
       aria-controls="contact-modal"
       className={cn(className)}
       onClick={(event) => {
-        openForm();
+        openForm(service);
         onClick?.(event);
       }}
       {...props}

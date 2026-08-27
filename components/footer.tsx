@@ -63,8 +63,21 @@ export function Footer() {
       </Reveal>
 
       <Reveal delay={80}>
-        <div className="page-wrap mt-10 border-t border-line pt-5 sm:mt-12">
-          <p className="text-[12px] text-muted">© 2026 {site.name}</p>
+        <div className="page-wrap mt-10 border-t border-line pt-5 text-center sm:mt-12">
+          <p className="text-[12px] text-muted">
+            © 2026 {site.name}. All rights reserved.
+          </p>
+          <p className="mt-1.5 text-[12px] text-muted">
+            Powered by{" "}
+            <a
+              href="https://www.vitespace.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold text-navy transition-colors duration-200 hover:text-muted"
+            >
+              Vitespace
+            </a>
+          </p>
         </div>
       </Reveal>
     </footer>

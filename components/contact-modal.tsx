@@ -16,6 +16,9 @@ function ServicePicker({
 }) {
   const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
+  const baseOptions = enquiryServiceGroups.flatMap((group) => group.options);
+  const options =
+    value && !baseOptions.includes(value) ? [value, ...baseOptions] : baseOptions;
 
   useEffect(() => {
     if (!open) return;
@@ -51,33 +54,26 @@ function ServicePicker({
       {open ? (
         <div
           role="listbox"
-          className="absolute left-0 right-0 top-full z-30 mt-1 max-h-44 overflow-y-auto overscroll-contain rounded-lg border border-line bg-white shadow-[0_12px_28px_rgba(11,31,51,0.12)]"
+          className="absolute left-0 right-0 top-full z-30 mt-1 overflow-hidden rounded-lg border border-line bg-white py-1 shadow-[0_12px_28px_rgba(11,31,51,0.12)]"
         >
-          {enquiryServiceGroups.map((group) => (
-            <div key={group.label} className="border-b border-line last:border-b-0">
-              <p className="px-3 pb-1 pt-2.5 text-[10px] font-medium uppercase tracking-[0.14em] text-muted">
-                {group.label}
-              </p>
-              {group.options.map((service) => (
-                <button
-                  key={service}
-                  type="button"
-                  role="option"
-                  aria-selected={value === service}
-                  className={`block w-full px-3 py-2 text-left text-[0.9rem] ${
-                    value === service
-                      ? "bg-cream text-navy"
-                      : "text-navy hover:bg-cream"
-                  }`}
-                  onClick={() => {
-                    onChange(service);
-                    setOpen(false);
-                  }}
-                >
-                  {service}
-                </button>
-              ))}
-            </div>
+          {options.map((service) => (
+            <button
+              key={service}
+              type="button"
+              role="option"
+              aria-selected={value === service}
+              className={`block w-full px-3.5 py-2.5 text-left text-[0.92rem] ${
+                value === service
+                  ? "bg-cream text-navy"
+                  : "text-navy hover:bg-cream"
+              }`}
+              onClick={() => {
+                onChange(service);
+                setOpen(false);
+              }}
+            >
+              {service}
+            </button>
           ))}
         </div>
       ) : null}
@@ -86,7 +82,7 @@ function ServicePicker({
 }
 
 export function ContactModal() {
-  const { open, closeForm } = useContact();
+  const { open, closeForm, presetService } = useContact();
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
   const [service, setService] = useState("");
@@ -101,9 +97,10 @@ export function ContactModal() {
       return;
     }
 
+    setService(presetService);
     const frame = requestAnimationFrame(() => nameRef.current?.focus());
     return () => cancelAnimationFrame(frame);
-  }, [open]);
+  }, [open, presetService]);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

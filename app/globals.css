@@ -279,3 +279,17 @@
     transform: none;
   }
 }
+
+.service-panel-scroll {
+  height: min(26rem, max(13.5rem, calc(100svh - 15rem)));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(11 31 51 / 0.28) transparent;
+}
+
+@media (max-width: 639px) {
+  .service-panel-scroll {
+    height: min(21.5rem, max(12.5rem, calc(100svh - 14.5rem)));
+  }
+}

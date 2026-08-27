@@ -13,7 +13,8 @@ import { ContactModal } from "@/components/contact-modal";
 
 type ContactContextValue = {
   open: boolean;
-  openForm: () => void;
+  presetService: string;
+  openForm: (service?: string) => void;
   closeForm: () => void;
 };
 
@@ -21,9 +22,16 @@ const ContactContext = createContext<ContactContextValue | null>(null);
 
 export function ContactProvider({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
+  const [presetService, setPresetService] = useState("");
 
-  const openForm = useCallback(() => setOpen(true), []);
-  const closeForm = useCallback(() => setOpen(false), []);
+  const openForm = useCallback((service?: string) => {
+    setPresetService(service?.trim() ?? "");
+    setOpen(true);
+  }, []);
+  const closeForm = useCallback(() => {
+    setOpen(false);
+    setPresetService("");
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -43,8 +51,8 @@ export function ContactProvider({ children }: { children: ReactNode }) {
   }, [open]);
 
   const value = useMemo(
-    () => ({ open, openForm, closeForm }),
-    [open, openForm, closeForm],
+    () => ({ open, presetService, openForm, closeForm }),
+    [open, presetService, openForm, closeForm],
   );
 
   return (
