@@ -54,7 +54,7 @@ export async function POST(request: Request) {
   const host = process.env.SMTP_HOST;
   const user = process.env.SMTP_USER;
   const pass = process.env.SMTP_PASS;
-  const to = process.env.MAIL_TO || "juristaxadvisors@gmail.com";
+  const to = process.env.MAIL_TO || "connect@juristaxadvisors.com";
   const from = process.env.MAIL_FROM || `Juristax Advisors LLP <${user}>`;
   const port = Number(process.env.SMTP_PORT || 465);
   const secure = process.env.SMTP_SECURE !== "false";

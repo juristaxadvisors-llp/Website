@@ -173,17 +173,31 @@ export function ContactModal() {
         <div className="h-[3px] shrink-0 bg-gold" aria-hidden />
 
         <div className="flex shrink-0 items-start justify-between gap-4 px-5 pb-4 pt-5 sm:px-7 sm:pt-6">
-          <div>
-            <h2
-              id="contact-modal-heading"
-              className="font-serif text-[1.55rem] font-medium leading-tight text-navy sm:text-[1.85rem]"
-            >
-              {contactModal.heading}
-            </h2>
-            <p className="mt-1.5 max-w-[40ch] text-[0.88rem] leading-relaxed text-muted">
-              {contactModal.supporting}
-            </p>
-          </div>
+          {status === "sent" ? (
+            <div>
+              <h2
+                id="contact-modal-heading"
+                className="font-serif text-[1.55rem] font-medium leading-tight text-navy sm:text-[1.85rem]"
+              >
+                {contactModal.successTitle}
+              </h2>
+              <p className="mt-1.5 max-w-[40ch] text-[0.88rem] leading-relaxed text-muted">
+                {contactModal.successBody}
+              </p>
+            </div>
+          ) : (
+            <div>
+              <h2
+                id="contact-modal-heading"
+                className="font-serif text-[1.55rem] font-medium leading-tight text-navy sm:text-[1.85rem]"
+              >
+                {contactModal.heading}
+              </h2>
+              <p className="mt-1.5 max-w-[40ch] text-[0.88rem] leading-relaxed text-muted">
+                {contactModal.supporting}
+              </p>
+            </div>
+          )}
           <button
             ref={closeRef}
             type="button"
@@ -198,13 +212,7 @@ export function ContactModal() {
         <div className="min-h-0 flex-1 overflow-y-auto px-5 pb-6 sm:px-7 sm:pb-7">
           {status === "sent" ? (
             <div className="pt-1">
-              <p className="font-serif text-[1.5rem] font-medium text-navy">
-                {contactModal.successTitle}
-              </p>
-              <p className="mt-3 max-w-[36ch] text-[0.98rem] leading-relaxed text-muted">
-                {contactModal.successBody}
-              </p>
-              <button type="button" onClick={closeForm} className="btn btn-primary mt-6 sm:w-auto">
+              <button type="button" onClick={closeForm} className="btn btn-primary sm:w-auto">
                 Close
               </button>
             </div>
